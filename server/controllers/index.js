@@ -1,8 +1,5 @@
-const UserModel = require("./user")
 
 module.exports = {
     userController: require("./userController"),
-    journalController: require("./journalController")
+    journalController: require("./logcontroller")
 }
-
-module.exports = { UserModel}
