@@ -12,7 +12,7 @@ const WorkoutIndex = (props) => {
     const [workoutToUpdate, setWorkoutToUpdate] = useState({})
 
     const fetchWorkouts = () => {
-        fetch('http://localhost:3000/log/log', {
+        fetch('http://localhost:3000/log/', {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ const WorkoutIndex = (props) => {
                 <Col md="9">
                     <WorkoutTable workouts={workouts} editUpdateWorkout={editUpdateWorkout} updateOn={updateOn} fetchWorkouts={fetchWorkouts} token={props.token} />
                 </Col>
-                {updateActive ? <WorkoutEdit workoutToUpdate={workoutToUpdate} updateOff={updateOff} token={props.token} fetchworkouts={fetchWorkouts}/> : <></>}
+                {updateActive ? <WorkoutEdit workoutToUpdate={workoutToUpdate} updateOff={updateOff} token={props.token} fetchWorkouts={fetchWorkouts}/> : <></>}
             </Row>
         </Container>
 

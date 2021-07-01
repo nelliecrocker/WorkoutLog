@@ -1,24 +1,24 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap'
+import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap'
 
 const WorkoutEdit = (props) => {
 
-        const [editDesc, setEditDesc] = useState(props.workoutToUpdate.description)
-        const [editDef, setEditDef] = useState(props.workoutToUpdate.definition)
-        const [editRes, setEditRes] = useState(props.workoutToUpdate.result)
-    
+    const [editDesc, setEditDesc] = useState(props.workoutToUpdate.description)
+    const [editDef, setEditDef] = useState(props.workoutToUpdate.definition)
+    const [editRes, setEditRes] = useState(props.workoutToUpdate.result)
+
 
     const workoutUpdate = (event, workout) => {
         event.preventDefault()
         fetch(`http://localhost:3000/log/${props.workoutToUpdate.id}`, {
             method: 'PUT',
-            body: JSON.stringify({log: {description: editDesc, definition: editDef, result: editRes}}),
+            body: JSON.stringify({ workoutEntry: { description: editDesc, definition: editDef, results: editRes } }),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': props.token
+                'Authorization': `Bearer ${props.token}`
             })
-        }).then((res)=>{
+        }) .then((res) => {
             props.fetchWorkouts()
             props.updateOff()
         })
@@ -45,16 +45,13 @@ const WorkoutEdit = (props) => {
                             <option value="Weight">Weight</option>
                             <option value="Distance">Distance</option>
                         </Input>
-
-
                     </FormGroup>
                     <Button type="submit">Update the workout!</Button>
-
                 </Form>
             </ModalBody>
         </Modal>
     );
-    }
+}
 
 
 export default WorkoutEdit
