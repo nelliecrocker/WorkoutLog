@@ -10,7 +10,7 @@ router.get('/practice', validateJWT, (req, res) => {
     res.send('Hey!! This is a practice route!')
 })
 //! Create workout entries
-router.post("/log/", validateJWT, async (req, res) => {
+router.post("/", validateJWT, async (req, res) => {
     const {
         description,
         definition,
@@ -36,7 +36,7 @@ router.post("/log/", validateJWT, async (req, res) => {
 })
 
 //! Get workouts by user
-router.get("/log", validateJWT, async (req, res) => {
+router.get("/", validateJWT, async (req, res) => {
     const {
         id
     } = req.user
@@ -55,7 +55,7 @@ router.get("/log", validateJWT, async (req, res) => {
 })
 
 //! Get logs by ID for individual user
-router.get("/log/:id"), validateJWT, async (req, res) => {
+router.get("/:id"), validateJWT, async (req, res) => {
     const {
         id
     } = req.user
@@ -79,7 +79,7 @@ router.get("/log/:id"), validateJWT, async (req, res) => {
 
 
 //! Allows individual logs to be updated by user
-router.put("/log/:id", validateJWT, async (req, res) => {
+router.put("/:id", validateJWT, async (req, res) => {
     try {
         const WorkoutID = req.params.id
         const {
@@ -112,7 +112,7 @@ router.put("/log/:id", validateJWT, async (req, res) => {
 })
 
 //! Allows individual logs to be deleted by a user
-router.delete("/log/:id", validateJWT, async (req, res) => {
+router.delete("/:id", validateJWT, async (req, res) => {
     try {
         const WorkoutID = req.params.id
         const logID = req.user.id
