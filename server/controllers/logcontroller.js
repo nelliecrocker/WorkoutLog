@@ -36,7 +36,7 @@ router.post("/log/", validateJWT, async (req, res) => {
 })
 
 //! Get workouts by user
-router.get("/log/", validateJWT, async (req, res) => {
+router.get("/log", validateJWT, async (req, res) => {
     const {
         id
     } = req.user
@@ -59,9 +59,9 @@ router.get("/log/:id"), validateJWT, async (req, res) => {
     const {
         id
     } = req.user
-    const {
-        logID = req.params.id
-    }
+
+    const logID = req.params.id
+    
     try {
         const getLog = await LogModel.findOne({
             where: {
@@ -75,7 +75,7 @@ router.get("/log/:id"), validateJWT, async (req, res) => {
             error: err
         })
     }
-    }
+}
 
 
 //! Allows individual logs to be updated by user

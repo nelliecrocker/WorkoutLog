@@ -6,9 +6,10 @@ const dbConnection = require("./db")
 const controllers = require("./controllers")
 
 app.use(Express.json())
-app.use('/workoutlog', controllers.journalController)
+app.use(require('./middleware/headers'))
+app.use('/log', controllers.logController)
 app.use("/user", controllers.userController)
-app.use(require("./middleware/validate-jwt"))
+// app.use(require("./middleware/validate-jwt"))
 
 dbConnection.authenticate()
     .then(() => dbConnection.sync()) //{force: true}
